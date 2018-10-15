@@ -1,14 +1,23 @@
+<!DOCTYPE html>
 <html>
 <head>
 <!-- CSS -->
 <style type="text/css">
-	div {
+	div, table {
 		margin-bottom: 20px;
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+	th, td {
+    	padding: 15px;
+    	border: 1px solid black;
+    	text-align: left;
 	}
 </style>
 
 <!-- Data -->
-<script>
+<script type="text/javascript">
 
 // Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
 var organizations = [
@@ -200,14 +209,66 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+	<div id="org_table">	</div>
+	
+	<table id="data_table">
+		<tr>
+			<th>Number of Non-Profits</th>
+			<th>Number of Orgs Less than 10 Yrs Old</th>
+			<th>Number of NA Orgs</th>
+			<th>Transportation Organizations</th>
+			<th>High-Income Orgs</th>
+		</tr>
+		<tr>
+			<td id='nonprofit'>Text</td>
+			<td id='ten'>Text</td>
+			<td id='NA'>Text</td>
+			<td id='transport'>Text</td>
+			<td id='high'>Text</td>
+		</tr>
+	</table>
+	
 
-<script>
+
+<script type="text/javascript">
 // outputs the first item of the organizations array. Just for testing.
 console.log(organizations[0]); 
+console.log("test");
 
-// Your JavaScript code goes here
+/*Counts: the number of non-profits, number of NA organizations, number of transportation types of data,
+ * number of orgs less than 10 yrs old, and number of high-income orgs.*/
+ var nonProfits = 0;
+ var tenOrgs = 0;
+ var nAmerica = 0;
+ var transport = 0;
+ var highIncome = 0;
+ 
+ for (i = 0; i < organizations.length; i++) {
+	 if (organizations[i]['Organization Type'] === "Nonprofit") {
+		 nonProfits++;
+	 }
+	 if (2018 - organizations[i]['Founding Year'] < 10) {
+		 tenOrgs++;
+	 }
+	 if (organizations[i]['Region'] === "North America") {
+		 nAmerica++;
+	 }
+	 if (organizations[i]['Type of Data Used'] === 'Transportation') {
+		 transport++;
+	 }
+	 if (organizations[i]['Country Income Level'] === 'High Income') {
+		 highIncome++;
+	 }
+ }
 
+ var x = document.getElementById("data_table").rows[1].cells;
+ x[0].innerHTML = nonProfits;
+ x[1].innerHTML = tenOrgs;
+ x[2].innerHTML = nAmerica;
+ x[3].innerHTML = transport;
+ x[4].innerHTML = highIncome;
+	
+}
 
 </script>
 
